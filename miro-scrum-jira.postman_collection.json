@@ -1,0 +1,1185 @@
+{
+  "info": {
+    "_postman_id": "d3444f87-a8ee-489b-a524-c11fc8924e98",
+    "name": "miro-scrum-jira",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21942383"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "http://127.0.0.1:8090/oauth2/authorization/client-app",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8090/oauth2/authorization/client-app",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8090",
+              "path": [
+                "oauth2",
+                "authorization",
+                "client-app"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "http://127.0.0.1:8085/login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "josemaria@email.com",
+                  "type": "text",
+                  "uuid": "ad115f9a-a228-4eb2-9f23-3d6660eb63f4"
+                },
+                {
+                  "key": "password",
+                  "value": "12345",
+                  "type": "text",
+                  "uuid": "4d02ae8d-2d64-410c-9769-979f7365df8d"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8085/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8085",
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "http://127.0.0.1:8085/oauth2/token",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "12345",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "gateway-app",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "text",
+                  "uuid": "43d824fb-35d4-488a-8de1-975e44c57e66"
+                },
+                {
+                  "key": "redirect_uri",
+                  "value": "http://127.0.0.1:8090/authorized",
+                  "type": "text",
+                  "uuid": "3459cf2a-d2b8-4935-87ec-fff69cb21dab"
+                },
+                {
+                  "key": "code",
+                  "value": "36mqlMCEzQBYe8saFKLamKVMkEFXdCq7Ccw5xncuh0hKcxTxMA8stdVn9QypCtD0ekeeSSXmiI4CIWcvIgZzm8wKjABBA3ZMfymPW4mpzhW2EzX9zjVEDglWezmAFHB6",
+                  "type": "text",
+                  "uuid": "0443ce23-d05b-4911-87ee-f1438398c502"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8085/oauth2/token",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8085",
+              "path": [
+                "oauth2",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "msvc-user",
+      "item": [
+        {
+          "name": "user",
+          "item": [
+            {
+              "name": "localhost:8090/mscrumjira/user/",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiIyZDRkMDA1Yi0zZmVmLTQ3YjYtOTc5Ni1jMDFmNjYwMzc5Y2YiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJtYXJpYUBleGFtcGxlLmNvbSIsImF1ZCI6ImdhdGV3YXktYXBwIiwibmJmIjoxNzY5MTU4NzgyLCJkYXRhIjoiZGF0YSBhZGljaW9uYWwgZW4gZWwgdG9rZW4iLCJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIl0sInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaXNzIjoiaHR0cDovLzEyNy4wLjAuMTo4MDg1IiwiZXhwIjoxNzY5MTczMTgyLCJpYXQiOjE3NjkxNTg3ODIsImp0aSI6ImJkM2MwMzk2LTA3MTEtNGIxZS1iZTlkLTc3YzYyY2EyMGE2MyJ9.WwXrCP9qBxSA3oba_vKZOxH0DPtfrgmeIk9oZnxDPOTpt5yY72wv8VSCQDjb1ELthdjbQ9SJH-1F58CTqAPbuH-i1vTlEYnMkv74fHDQ0h2ZKRYLHJUeAqgGB4SeBsXMcA_3RCW1PSs7a3P4r_jrTGsRWuenyqJ8l52f7LysX_Xljhh-0iLsik0OVAOVsgU90mlHBcq6QNzqmop_4Ewyr0HyCChx5mmEGkEjyJs7Hb0tqXGqsNPuqaQIKJ7YBmdY7gaWXW-NfKJ1KWPLGOEa_yk63n1u4x-G_We7D_HMY8sGI_AlkWwbioxGMUsCy9LRxTZJ073EFCrji9BBeqr5EA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"josemaria@email.com\",\r\n    \"password\": \"12345\",\r\n    \"displayName\":\"Jose Maria\",\r\n    \"roles\": [\r\n            \"ROLE_ADMIN\",\r\n            \"ROLE_USER\"\r\n        ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/username/josemaria@email.com",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiJmY2U1NTk5ZS03OTJmLTRiZGEtYmI0NS1lNGRhZmQ1MjlmNjMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk0MzIxNDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk0NDY1NDEsImlhdCI6MTc2OTQzMjE0MSwianRpIjoiYjY4YjNlMDEtZmIwZi00OThjLThkMzktNjFmOTg3YzhlMGVjIn0.NalqXP8Qyn9sCW9UrZ9HlJkGKsVs-r7fMplpKtErkGwTitatTPwfBf83LORVuWDHdkbb7hohuoLnlzlA2H5QXr-2Jh1fVklIqqnha-rf9eAGLOC4WFpeBt6wq4JtYOwLtn585eR4o-HWtmakDAnleAk2N0A6JERhH-P1HDFhh3_6EulDQRF_plza-yvfmvfOJ0Ug-cL2f9baZFt-FavX6tpfyNWh-kq4gWSlfRFhvQy1CeoB1f34riU9G80uWJ80--WICAlSC-6gRNIqaB4FU9rwCRnx8GMqo-T83vRhOwEaaxu59sdqGCCAHWdxvOgqpYjvbUZRV2EKOeR7LWeoiw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/username/josemaria@email.com",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "username",
+                    "josemaria@email.com"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/username/maria@example.com",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiIzMmQ1Y2RlZi1kYTM3LTQxODktODI1My02NWIxOWNiNDk4NTgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3NzA1NjI3OTEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3NzA1NzcxOTEsImlhdCI6MTc3MDU2Mjc5MSwianRpIjoiYTFmMjAwMzctMjZmMi00ZjJhLTljMTktYTk1ZmI4OTM3ZjAyIn0.dqiSnj_cAeRk3Yts0oW2AiO1d0mdisJYrAS280aMeG4NKcZynjzMjgC55tMETuvqhiQ6VTNpm3RJ0l_AUV3jPgMamKIEYeD5lBprgMid6h0sRM6MxQ2BnfxubBSSR3McDyT3lZlNFu8ntaRmLxZ_pmzh_7O7eRwoqLMGcTz8Edu7dUX5qRX98zxcIWGG6if6cGh1KQhlEkabqqN33wsKd0zM4IhOdXIb3fDaj1qts3JgsJML_26wq-Qdwr6AGEzXRreLajBy5H0IJaPQSt4RauSsc25MOkzngWwOaskJ1p6vISmwLSjFf4tXxoxtdG82_x_lxzDg2VOcnykF5lxfAQ",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/username/maria@example.com",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "username",
+                    "maria@example.com"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "team",
+          "item": [
+            {
+              "name": "localhost:8090/mscrumjira/user/team",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiJmY2U1NTk5ZS03OTJmLTRiZGEtYmI0NS1lNGRhZmQ1MjlmNjMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk0MzIxNDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk0NDY1NDEsImlhdCI6MTc2OTQzMjE0MSwianRpIjoiYjY4YjNlMDEtZmIwZi00OThjLThkMzktNjFmOTg3YzhlMGVjIn0.NalqXP8Qyn9sCW9UrZ9HlJkGKsVs-r7fMplpKtErkGwTitatTPwfBf83LORVuWDHdkbb7hohuoLnlzlA2H5QXr-2Jh1fVklIqqnha-rf9eAGLOC4WFpeBt6wq4JtYOwLtn585eR4o-HWtmakDAnleAk2N0A6JERhH-P1HDFhh3_6EulDQRF_plza-yvfmvfOJ0Ug-cL2f9baZFt-FavX6tpfyNWh-kq4gWSlfRFhvQy1CeoB1f34riU9G80uWJ80--WICAlSC-6gRNIqaB4FU9rwCRnx8GMqo-T83vRhOwEaaxu59sdqGCCAHWdxvOgqpYjvbUZRV2EKOeR7LWeoiw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/team",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "team"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/team/team-key/team3",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiJmY2U1NTk5ZS03OTJmLTRiZGEtYmI0NS1lNGRhZmQ1MjlmNjMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk0MzIxNDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk0NDY1NDEsImlhdCI6MTc2OTQzMjE0MSwianRpIjoiYjY4YjNlMDEtZmIwZi00OThjLThkMzktNjFmOTg3YzhlMGVjIn0.NalqXP8Qyn9sCW9UrZ9HlJkGKsVs-r7fMplpKtErkGwTitatTPwfBf83LORVuWDHdkbb7hohuoLnlzlA2H5QXr-2Jh1fVklIqqnha-rf9eAGLOC4WFpeBt6wq4JtYOwLtn585eR4o-HWtmakDAnleAk2N0A6JERhH-P1HDFhh3_6EulDQRF_plza-yvfmvfOJ0Ug-cL2f9baZFt-FavX6tpfyNWh-kq4gWSlfRFhvQy1CeoB1f34riU9G80uWJ80--WICAlSC-6gRNIqaB4FU9rwCRnx8GMqo-T83vRhOwEaaxu59sdqGCCAHWdxvOgqpYjvbUZRV2EKOeR7LWeoiw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/team/team-key/team3",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "team",
+                    "team-key",
+                    "team3"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/team",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiJmY2U1NTk5ZS03OTJmLTRiZGEtYmI0NS1lNGRhZmQ1MjlmNjMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk0MzIxNDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk0NDY1NDEsImlhdCI6MTc2OTQzMjE0MSwianRpIjoiYjY4YjNlMDEtZmIwZi00OThjLThkMzktNjFmOTg3YzhlMGVjIn0.NalqXP8Qyn9sCW9UrZ9HlJkGKsVs-r7fMplpKtErkGwTitatTPwfBf83LORVuWDHdkbb7hohuoLnlzlA2H5QXr-2Jh1fVklIqqnha-rf9eAGLOC4WFpeBt6wq4JtYOwLtn585eR4o-HWtmakDAnleAk2N0A6JERhH-P1HDFhh3_6EulDQRF_plza-yvfmvfOJ0Ug-cL2f9baZFt-FavX6tpfyNWh-kq4gWSlfRFhvQy1CeoB1f34riU9G80uWJ80--WICAlSC-6gRNIqaB4FU9rwCRnx8GMqo-T83vRhOwEaaxu59sdqGCCAHWdxvOgqpYjvbUZRV2EKOeR7LWeoiw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": " {\r\n        \"teamKey\": \"team3\",\r\n        \"username\": \"susana@email.com\"       \r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/team",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "team"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/team",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiIzMmQ1Y2RlZi1kYTM3LTQxODktODI1My02NWIxOWNiNDk4NTgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3NzA1NjI3OTEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3NzA1NzcxOTEsImlhdCI6MTc3MDU2Mjc5MSwianRpIjoiYTFmMjAwMzctMjZmMi00ZjJhLTljMTktYTk1ZmI4OTM3ZjAyIn0.dqiSnj_cAeRk3Yts0oW2AiO1d0mdisJYrAS280aMeG4NKcZynjzMjgC55tMETuvqhiQ6VTNpm3RJ0l_AUV3jPgMamKIEYeD5lBprgMid6h0sRM6MxQ2BnfxubBSSR3McDyT3lZlNFu8ntaRmLxZ_pmzh_7O7eRwoqLMGcTz8Edu7dUX5qRX98zxcIWGG6if6cGh1KQhlEkabqqN33wsKd0zM4IhOdXIb3fDaj1qts3JgsJML_26wq-Qdwr6AGEzXRreLajBy5H0IJaPQSt4RauSsc25MOkzngWwOaskJ1p6vISmwLSjFf4tXxoxtdG82_x_lxzDg2VOcnykF5lxfAQ",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"teamKey\": \"TEAM_ALPHA2\",\r\n    \"username\": \"developer_scrum.sofia.khan@email.com\"\r\n  }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/team",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "team"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/team/team-key/TEAM_ALPHA2",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiIzMmQ1Y2RlZi1kYTM3LTQxODktODI1My02NWIxOWNiNDk4NTgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3NzA1NjI3OTEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3NzA1NzcxOTEsImlhdCI6MTc3MDU2Mjc5MSwianRpIjoiYTFmMjAwMzctMjZmMi00ZjJhLTljMTktYTk1ZmI4OTM3ZjAyIn0.dqiSnj_cAeRk3Yts0oW2AiO1d0mdisJYrAS280aMeG4NKcZynjzMjgC55tMETuvqhiQ6VTNpm3RJ0l_AUV3jPgMamKIEYeD5lBprgMid6h0sRM6MxQ2BnfxubBSSR3McDyT3lZlNFu8ntaRmLxZ_pmzh_7O7eRwoqLMGcTz8Edu7dUX5qRX98zxcIWGG6if6cGh1KQhlEkabqqN33wsKd0zM4IhOdXIb3fDaj1qts3JgsJML_26wq-Qdwr6AGEzXRreLajBy5H0IJaPQSt4RauSsc25MOkzngWwOaskJ1p6vISmwLSjFf4tXxoxtdG82_x_lxzDg2VOcnykF5lxfAQ",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/team/team-key/TEAM_ALPHA2",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "team",
+                    "team-key",
+                    "TEAM_ALPHA2"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "role",
+          "item": [
+            {
+              "name": "localhost:8090/mscrumjira/user/role",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/role",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "role"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/role?name=PRODUCT_OWNER",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiJmY2U1NTk5ZS03OTJmLTRiZGEtYmI0NS1lNGRhZmQ1MjlmNjMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk0MzIxNDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk0NDY1NDEsImlhdCI6MTc2OTQzMjE0MSwianRpIjoiYjY4YjNlMDEtZmIwZi00OThjLThkMzktNjFmOTg3YzhlMGVjIn0.NalqXP8Qyn9sCW9UrZ9HlJkGKsVs-r7fMplpKtErkGwTitatTPwfBf83LORVuWDHdkbb7hohuoLnlzlA2H5QXr-2Jh1fVklIqqnha-rf9eAGLOC4WFpeBt6wq4JtYOwLtn585eR4o-HWtmakDAnleAk2N0A6JERhH-P1HDFhh3_6EulDQRF_plza-yvfmvfOJ0Ug-cL2f9baZFt-FavX6tpfyNWh-kq4gWSlfRFhvQy1CeoB1f34riU9G80uWJ80--WICAlSC-6gRNIqaB4FU9rwCRnx8GMqo-T83vRhOwEaaxu59sdqGCCAHWdxvOgqpYjvbUZRV2EKOeR7LWeoiw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/role?name=PRODUCT_OWNER",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "role"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "PRODUCT_OWNER"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/user/role/role-name/PRODUCT_OWNER",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiJmY2U1NTk5ZS03OTJmLTRiZGEtYmI0NS1lNGRhZmQ1MjlmNjMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk0MzIxNDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk0NDY1NDEsImlhdCI6MTc2OTQzMjE0MSwianRpIjoiYjY4YjNlMDEtZmIwZi00OThjLThkMzktNjFmOTg3YzhlMGVjIn0.NalqXP8Qyn9sCW9UrZ9HlJkGKsVs-r7fMplpKtErkGwTitatTPwfBf83LORVuWDHdkbb7hohuoLnlzlA2H5QXr-2Jh1fVklIqqnha-rf9eAGLOC4WFpeBt6wq4JtYOwLtn585eR4o-HWtmakDAnleAk2N0A6JERhH-P1HDFhh3_6EulDQRF_plza-yvfmvfOJ0Ug-cL2f9baZFt-FavX6tpfyNWh-kq4gWSlfRFhvQy1CeoB1f34riU9G80uWJ80--WICAlSC-6gRNIqaB4FU9rwCRnx8GMqo-T83vRhOwEaaxu59sdqGCCAHWdxvOgqpYjvbUZRV2EKOeR7LWeoiw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/user/role/role-name/PRODUCT_OWNER",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "user",
+                    "role",
+                    "role-name",
+                    "PRODUCT_OWNER"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "msvc-project",
+      "item": [
+        {
+          "name": "project",
+          "item": [
+            {
+              "name": "localhost:8090/mscrumjira/project",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/project-key/7",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1MTExNjUsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk1MjU1NjUsImlhdCI6MTc2OTUxMTE2NSwianRpIjoiNzdmY2FhZTQtZGFmNS00YTNjLWFjM2ItNmI5NjY1OGRkNmEyIn0.euiF3SoOdJLKXXrLW0xWMjTDCaSxBxC9IE_VGs8mGmywszUczz4dT7BIpAFq2e5bZYquMeIZIq6pXm3ULuAL0S2N5iGsB3SkIC3UQxY9SZ2mQK0E5qqV5L72D05fgyD1zxrUobX5ATYtaupC88UsCDtW1oTbs21hDZFV5eWF53eBdSfNsb92MHyYf9ChDGx5if6kUHo0T13R-SAIbK9LI5sJLtNK5-tGqn_XEwSBF6d78VEh2HEUFHFJth0HqXfFdySYuBx8o30G42NnIABBq6zDAywkddRwyrn-y4_iutwdcGmD-ayRjWzLte_aOx-yJ1tJgAs-mBnz-C9h0iQpGw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Proyecto Scrum Core updating\",\r\n  \"description\": \"Proyecto principal de gestión Scrum  updating\",\r\n  \"state\":\"ACTIVE\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/project-key/7",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "project-key",
+                    "7"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1MTExNjUsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk1MjU1NjUsImlhdCI6MTc2OTUxMTE2NSwianRpIjoiNzdmY2FhZTQtZGFmNS00YTNjLWFjM2ItNmI5NjY1OGRkNmEyIn0.euiF3SoOdJLKXXrLW0xWMjTDCaSxBxC9IE_VGs8mGmywszUczz4dT7BIpAFq2e5bZYquMeIZIq6pXm3ULuAL0S2N5iGsB3SkIC3UQxY9SZ2mQK0E5qqV5L72D05fgyD1zxrUobX5ATYtaupC88UsCDtW1oTbs21hDZFV5eWF53eBdSfNsb92MHyYf9ChDGx5if6kUHo0T13R-SAIbK9LI5sJLtNK5-tGqn_XEwSBF6d78VEh2HEUFHFJth0HqXfFdySYuBx8o30G42NnIABBq6zDAywkddRwyrn-y4_iutwdcGmD-ayRjWzLte_aOx-yJ1tJgAs-mBnz-C9h0iQpGw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Proyecto Scrum Core\",\r\n  \"description\": \"Proyecto principal de gestión Scrum\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/project-key/3",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1MTExNjUsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk1MjU1NjUsImlhdCI6MTc2OTUxMTE2NSwianRpIjoiNzdmY2FhZTQtZGFmNS00YTNjLWFjM2ItNmI5NjY1OGRkNmEyIn0.euiF3SoOdJLKXXrLW0xWMjTDCaSxBxC9IE_VGs8mGmywszUczz4dT7BIpAFq2e5bZYquMeIZIq6pXm3ULuAL0S2N5iGsB3SkIC3UQxY9SZ2mQK0E5qqV5L72D05fgyD1zxrUobX5ATYtaupC88UsCDtW1oTbs21hDZFV5eWF53eBdSfNsb92MHyYf9ChDGx5if6kUHo0T13R-SAIbK9LI5sJLtNK5-tGqn_XEwSBF6d78VEh2HEUFHFJth0HqXfFdySYuBx8o30G42NnIABBq6zDAywkddRwyrn-y4_iutwdcGmD-ayRjWzLte_aOx-yJ1tJgAs-mBnz-C9h0iQpGw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/project-key/3",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "project-key",
+                    "3"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/project-key/1",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiI2YWY3ZjBlMy1mODE2LTRjMWUtOGY2Ny1mYzYxNGQ4OWZlOTMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk2MTEzNzYsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk2MjU3NzYsImlhdCI6MTc2OTYxMTM3NiwianRpIjoiMjJkYjA1Y2ItNDhjOS00YjBiLWFkOGItNmJkOWE4ZTQxYjY1In0.Z-dlau3QXuuM62PmB_segzq5l3Tjq-9NkeSQmv43__6tXUwwTHxiAk-74qHvsLgWxs1LlwO1f_dB0fv2jXD4dFBJatvICN-8paLMPAYe4yUM9NX1wZZfb7MV7kUyjghCIBP5r67bLO609l_xqvJfDz0WJfj5qzOvOTeCki7cPMGBNGG7Kpo63_mIKxNFCpyEufK-WdgY_icIvi5C3S-3TuXgqLe3pFgFw1M-sE5K3MgatlY8wvYTtbs2RnV6wlAkJCD0zSmhdW5w07U3w7M6qBE85P8PxB0gmttGhNHJztSQI94jf_8YY5OVm1f1WzrMOlMLN3CreESM56MB6pycrQ",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/project-key/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "project-key",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/project-key/4/state",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiIyM2JjNzMzNS1lZTM2LTRhYWYtOTU1NC03NGVmZTM4NTI3ZTUiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk5NDYyODUsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk5NjA2ODUsImlhdCI6MTc2OTk0NjI4NSwianRpIjoiOWUzNzVjMDEtMzc2MC00ZjQ4LWJkZjktOTI3NWY0ODJmMTdmIn0.m-69JrsRtMbJb0ixYiUYYtBHreXN9g73fC3f6riMyvYR3zBglsU9p4f8nD6dFdP4u7F8EbymCuhUYyfQy9TMcBwuvkXM-FdVyR9_VUudH6Eb08Ugm-sJ-u0wgISmpj0gwTqlTyLP-WrWf2JbYNe_AjhfEL06CJY6CypX7wy1DWGEmBeiCcahdC9343iJD56dhf6qWXsXaJLcMz8AGQDG-oI8Pj8sLNyUOI-x41NwFZXQvHsZ3vn-ECIk_PTvffwdvSINZgVkE_GYTNwZyh5iBAFJ9If6e2NOU7M0vY4Bt2SPiIf9OARtsMWlyz6TrXkdTI1rjjOStHJzamYdesb7cA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\"ARCHIVED\"",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/project-key/4/state",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "project-key",
+                    "4",
+                    "state"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "sprint",
+          "item": [
+            {
+              "name": "localhost:8090/mscrumjira/project/sprint",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/sprint",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "sprint"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/sprint/sprint-key/4",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1MTExNjUsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk1MjU1NjUsImlhdCI6MTc2OTUxMTE2NSwianRpIjoiNzdmY2FhZTQtZGFmNS00YTNjLWFjM2ItNmI5NjY1OGRkNmEyIn0.euiF3SoOdJLKXXrLW0xWMjTDCaSxBxC9IE_VGs8mGmywszUczz4dT7BIpAFq2e5bZYquMeIZIq6pXm3ULuAL0S2N5iGsB3SkIC3UQxY9SZ2mQK0E5qqV5L72D05fgyD1zxrUobX5ATYtaupC88UsCDtW1oTbs21hDZFV5eWF53eBdSfNsb92MHyYf9ChDGx5if6kUHo0T13R-SAIbK9LI5sJLtNK5-tGqn_XEwSBF6d78VEh2HEUFHFJth0HqXfFdySYuBx8o30G42NnIABBq6zDAywkddRwyrn-y4_iutwdcGmD-ayRjWzLte_aOx-yJ1tJgAs-mBnz-C9h0iQpGw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/sprint/sprint-key/4",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "sprint",
+                    "sprint-key",
+                    "4"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/sprint/",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1MjU3NDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk1NDAxNDEsImlhdCI6MTc2OTUyNTc0MSwianRpIjoiZmNhMjE0N2UtY2NkNS00OWExLWE5N2QtNTljOTcwNWY4N2Q0In0.Dffbf7speR1aXZn5VgUaM-fa330ZzISEhyBru_wzkJ97zteTd2uwiTY32C7NvoYk7UFXV5De_W9ykBB081v3G8hvbSllcQTArAMKMao9FNyB-5ZJvZD1t1WFK26EYwrFSfyzP1FZLarFPmgy0cglGK2KGQ1FgW0yU1vylHOGzpqwbRZF2Unyp66e0peosqmdWtPye7m8tB9S0-rmWFEvHqN3f-VQsouaE7Mv-pDQgKCNNK0_aEZvJk23p4fGbVQ8U2vcRHozUoIBhD63e_YxN1XkCBoRdwpHp52_G9yn9P6uBLGjodlx-_lYX0SPEwyFB8M9PNDLrbqJfxbwdOCNdQ",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"teamKey\": \"Team3\",\r\n    \"projectKey\":\"1\",\r\n    \"startDate\": \"2026-04-16T09:00:00\",\r\n    \"endDate\": \"2026-05-09T09:00:00\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/sprint/",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "sprint",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/sprint/sprint-key/7",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1MjU3NDEsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk1NDAxNDEsImlhdCI6MTc2OTUyNTc0MSwianRpIjoiZmNhMjE0N2UtY2NkNS00OWExLWE5N2QtNTljOTcwNWY4N2Q0In0.Dffbf7speR1aXZn5VgUaM-fa330ZzISEhyBru_wzkJ97zteTd2uwiTY32C7NvoYk7UFXV5De_W9ykBB081v3G8hvbSllcQTArAMKMao9FNyB-5ZJvZD1t1WFK26EYwrFSfyzP1FZLarFPmgy0cglGK2KGQ1FgW0yU1vylHOGzpqwbRZF2Unyp66e0peosqmdWtPye7m8tB9S0-rmWFEvHqN3f-VQsouaE7Mv-pDQgKCNNK0_aEZvJk23p4fGbVQ8U2vcRHozUoIBhD63e_YxN1XkCBoRdwpHp52_G9yn9P6uBLGjodlx-_lYX0SPEwyFB8M9PNDLrbqJfxbwdOCNdQ",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\"ACTIVE\"",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/sprint/sprint-key/7",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "sprint",
+                    "sprint-key",
+                    "7"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "localhost:8090/mscrumjira/project/sprint/sprint-key/4",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJraWQiOiJjY2E3MmJkZC0wNTkwLTQwOTUtYTEzYy0wNWRkNzY0ZDM1NTIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk4NzU2NTYsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk4OTAwNTYsImlhdCI6MTc2OTg3NTY1NiwianRpIjoiNmFjY2U2Y2ItY2FmMS00N2I0LTlmNzAtMTgyZjY5NDAzYjJkIn0.mVW82NDhIlD734viDOougoS-Cw3m9TkUi060556-VzK3KT-wigt_LD3h-7_aA1_hauI4oiGn1pk_gxz5vX_jbjvWc24VLj9OQG_ak1mis6b5P70wPB3eHSMSz9HevBHGU9X0vUySgA6nCG6l_30M9JLzkbpnW_YgRu6wRWRElL4SM2Th4Ftm0cQ85TY2fjooZv7t5fNdXAaBiESbQ7pmlS7lJisgpczknJVpmN6ENRLUCUSeqLMeomWljUnfXN_a_JahnN2KWcHa5vfem4VEbhWHmxoYvM8xAJIGi-Mr5EwfhkdLHAHFQyX3azleKkuS_74-XgTiaeTdxhlf0WX5qw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\"ARCHIVED\"",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:8090/mscrumjira/project/sprint/sprint-key/4",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8090",
+                  "path": [
+                    "mscrumjira",
+                    "project",
+                    "sprint",
+                    "sprint-key",
+                    "4"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "msvc-task",
+      "item": [
+        {
+          "name": "localhost:8090/mscrumjira/task/product-to-sprint",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1OTAwNDAsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk2MDQ0NDAsImlhdCI6MTc2OTU5MDA0MCwianRpIjoiZTMxOTJkZDMtOWUyZC00OGI4LWIwYzktYmMyY2FhMTkxYmQ1In0.H1kyy2JorM3CjD9BDwwKJUqLo-7Pl_t9WMG6-GFeS_c0q52Hc3t9_R96fA_KkxUMfK4CnjeCIHk87nJ_aOo-CUy--loAfQ5m0AtAwMQO2T-Ncy0BDhi00iHVlADU570YNseXm_-RLTxEieaf-RgCqtqL8mRQw8MPEruU9GkiA9VlLmyWGyr1vopY73fYSsoSN-i_upf7Yk3bp5s-ngJBlxyC3IzauA5YxXm5qWySJ3PdpgNiBYnjQYOSC69vI9LYxlzf9V6kwLsEgXs9W1ItZU7FG2sLE8x3rqS51F3agNj11LySVoeu-DPM-oDeCdpnp3WJ0-ip3V7MWA1DrpwTrg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{    \r\n    \"sprintKey\": 1,\r\n    \"taskNumber\":11        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8090/mscrumjira/task/product-to-sprint",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "mscrumjira",
+                "task",
+                "product-to-sprint"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "localhost:8090/mscrumjira/task/10/state/IN_PROGRESS",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1OTAwNDAsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk2MDQ0NDAsImlhdCI6MTc2OTU5MDA0MCwianRpIjoiZTMxOTJkZDMtOWUyZC00OGI4LWIwYzktYmMyY2FhMTkxYmQ1In0.H1kyy2JorM3CjD9BDwwKJUqLo-7Pl_t9WMG6-GFeS_c0q52Hc3t9_R96fA_KkxUMfK4CnjeCIHk87nJ_aOo-CUy--loAfQ5m0AtAwMQO2T-Ncy0BDhi00iHVlADU570YNseXm_-RLTxEieaf-RgCqtqL8mRQw8MPEruU9GkiA9VlLmyWGyr1vopY73fYSsoSN-i_upf7Yk3bp5s-ngJBlxyC3IzauA5YxXm5qWySJ3PdpgNiBYnjQYOSC69vI9LYxlzf9V6kwLsEgXs9W1ItZU7FG2sLE8x3rqS51F3agNj11LySVoeu-DPM-oDeCdpnp3WJ0-ip3V7MWA1DrpwTrg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "localhost:8090/mscrumjira/task/10/state/IN_PROGRESS",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "mscrumjira",
+                "task",
+                "10",
+                "state",
+                "IN_PROGRESS"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "localhost:8090/mscrumjira/task/",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJraWQiOiI4ZWZiZGM1Yy02NGIwLTRjOWUtYTk3Zi0zYTAzMTQwZTlkNDEiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk1OTAwNDAsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk2MDQ0NDAsImlhdCI6MTc2OTU5MDA0MCwianRpIjoiZTMxOTJkZDMtOWUyZC00OGI4LWIwYzktYmMyY2FhMTkxYmQ1In0.H1kyy2JorM3CjD9BDwwKJUqLo-7Pl_t9WMG6-GFeS_c0q52Hc3t9_R96fA_KkxUMfK4CnjeCIHk87nJ_aOo-CUy--loAfQ5m0AtAwMQO2T-Ncy0BDhi00iHVlADU570YNseXm_-RLTxEieaf-RgCqtqL8mRQw8MPEruU9GkiA9VlLmyWGyr1vopY73fYSsoSN-i_upf7Yk3bp5s-ngJBlxyC3IzauA5YxXm5qWySJ3PdpgNiBYnjQYOSC69vI9LYxlzf9V6kwLsEgXs9W1ItZU7FG2sLE8x3rqS51F3agNj11LySVoeu-DPM-oDeCdpnp3WJ0-ip3V7MWA1DrpwTrg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{    \r\n    \"projectKey\": 3,\r\n    \"title\": \" post task testing v0\",\r\n    \"description\": \" description of post task testing v0\",\r\n    \"priority\": 4,\r\n    \"estimate\": 15              \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8090/mscrumjira/task/",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "mscrumjira",
+                "task",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "localhost:8090/mscrumjira/task/task-number/10",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJraWQiOiIwZDAzMzU1OC0zMmIwLTQ0YTMtYjA1NS0yNzBlMTk4MDQwZWIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3NjkzNDk3MjcsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3NjkzNjQxMjcsImlhdCI6MTc2OTM0OTcyNywianRpIjoiMWJkZjc5YjUtYmEzNS00YzY1LTljMGYtM2ZjY2IyODgwNjBhIn0.m--BmYKBaaPFsBoXcmx_mL9R70akLeDJU8-kK1Ig0brOlfVkMOjH_rs_MGMYIbTrRyOraWnmEFu7tKOyAOsBaOXeQChGZXuU39DxsBJehA5NU-l6MA31WXcbabgeqko8sR-Wl6Uv2GmxSTQEQpV2Rxk9oVkj-L7KqprqVyWk2ZBkoPdW52Bq-0InZnyFC92I1DxsTY2QzDjf58SJCxxz6EceaRlkVqePQDIpGc1LvtKxSkkH4-pst4zofNnQzqZjvMVLc0CJkLaNCU5ScEE-OjwdOZsN18APXLVheazWcwwGblZNG6l5GlTHJ0HEOCQ8mkrU2mkprMrb3ar_lQZFrA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8090/mscrumjira/task/task-number/10",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "mscrumjira",
+                "task",
+                "task-number",
+                "10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "localhost:8090/mscrumjira/task/sprint-to-product/10",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJraWQiOiIwZDAzMzU1OC0zMmIwLTQ0YTMtYjA1NS0yNzBlMTk4MDQwZWIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3NjkzNDk3MjcsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3NjkzNjQxMjcsImlhdCI6MTc2OTM0OTcyNywianRpIjoiMWJkZjc5YjUtYmEzNS00YzY1LTljMGYtM2ZjY2IyODgwNjBhIn0.m--BmYKBaaPFsBoXcmx_mL9R70akLeDJU8-kK1Ig0brOlfVkMOjH_rs_MGMYIbTrRyOraWnmEFu7tKOyAOsBaOXeQChGZXuU39DxsBJehA5NU-l6MA31WXcbabgeqko8sR-Wl6Uv2GmxSTQEQpV2Rxk9oVkj-L7KqprqVyWk2ZBkoPdW52Bq-0InZnyFC92I1DxsTY2QzDjf58SJCxxz6EceaRlkVqePQDIpGc1LvtKxSkkH4-pst4zofNnQzqZjvMVLc0CJkLaNCU5ScEE-OjwdOZsN18APXLVheazWcwwGblZNG6l5GlTHJ0HEOCQ8mkrU2mkprMrb3ar_lQZFrA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"taskNumber\":5,\r\n    \"sprintKey\" :19\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8090/mscrumjira/task/sprint-to-product/10",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "mscrumjira",
+                "task",
+                "sprint-to-product",
+                "10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "localhost:8090/mscrumjira/task",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8090/mscrumjira/task",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "mscrumjira",
+                "task"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "localhost:8090/mscrumjira/task/task-number/11",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJraWQiOiIwNmE1ZGExMi05NTFmLTQ0NzEtYmViYS1iMTE1ZGU5ODQ1YTUiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJqb3NlbWFyaWFAZW1haWwuY29tIiwiYXVkIjoiZ2F0ZXdheS1hcHAiLCJuYmYiOjE3Njk2OTk5MjIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiXSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODUiLCJleHAiOjE3Njk3MTQzMjIsImlhdCI6MTc2OTY5OTkyMiwianRpIjoiZjIzZjQ0NGMtNjk2Zi00NTBmLWExNzctY2ZiMDRiMDE5NmFhIn0.cakyrU84tL7dcBMw6pGJhp8TNd_T3aghYINMu8C9CIeRRbaewWuU6IQbKNEUgn6zd8MWyfPV9aXe9LDRpIplMBg6MZ7qV_Ge8STHnZz_HgYHJRw5DsTQithqspca4LiaWhkWcAIAoHx7voQUfv1bUJJANC4oQYkcj5p5fw6kzaJ3w-_TkeK-YObLQzkZrNfsaO7t1bK2iGl5oySfyCaKsVJQE4I4I-V5brKD85n01HnyS8jqLt81mUd9CrfVrzFjOAkNLxwb0flmCalSNjjQ0GfYoI9vth1Tuw04Hboam__JnCQgZWIUo6xdMNTejkHPN9wnaWpItkAxkNNwMus_iA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8090/mscrumjira/task/task-number/11",
+              "host": [
+                "localhost"
+              ],
+              "port": "8090",
+              "path": [
+                "mscrumjira",
+                "task",
+                "task-number",
+                "11"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
